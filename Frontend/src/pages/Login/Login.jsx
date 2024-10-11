@@ -16,6 +16,15 @@ const Login = () => {
       setError("Please enter a valid email address.");
       return;
     }
+
+    if (!password) {
+      setError("Please enter a password");
+      return;
+    }
+    setError("");
+
+    // Login API pending
+
   };
 
   return (
@@ -25,6 +34,7 @@ const Login = () => {
         <div className="w-96 border rounded bg-white px-7 py-10 drop-shadow">
           <form onSubmit={handleLogin}>
             <h4 className="text-2xl mb-7">Login</h4>
+            
             <input
               type="text"
               placeholder="Email"
@@ -36,6 +46,7 @@ const Login = () => {
             <PasswordInput value={password} onChange={(e) => setPassword(e.target.value)} />
 
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
+
 
             <button type="submit" className="button-primary">
               Login
