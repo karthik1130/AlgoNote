@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
 import PasswordInput from "../../components/Input/PasswordInput";
-// import { checkEmail } from "../../utils/helper"; // error
+import { verifyEmail } from "../../utils/helper";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (!checkEmail(email)) {
+    if (!verifyEmail(email)) {
       setError("Please enter a valid email address.");
       return;
     }
