@@ -20,68 +20,8 @@ const Home = () => {
           <NoteCard
             title={"Rearrange Sequence I"}
             date="2nd october"
-            content="Meeting on 7th April Meeting on 7th April Meeting on 7th April Meeting on 7th April"
-            tags="#Meeting"
-            isPinned={true}
-            onEdit={() => {}}
-            onDelete={() => {}}
-            onPinNote={() => {}}
-          />
-          <NoteCard
-            title={"Isomorphic Strings"}
-            date="2nd october"
-            content="Meeting on 7th April Meeting on 7th April Meeting on 7th April Meeting on 7th April"
-            tags="#Meeting"
-            isPinned={true}
-            onEdit={() => {}}
-            onDelete={() => {}}
-            onPinNote={() => {}}
-          />
-          <NoteCard
-            title={"Two sum"}
-            date="2nd october"
-            content="Meeting on 7th April Meeting on 7th April Meeting on 7th April Meeting on 7th April"
-            tags="#Meeting"
-            isPinned={true}
-            onEdit={() => {}}
-            onDelete={() => {}}
-            onPinNote={() => {}}
-          />
-          <NoteCard
-            title={"Max consecutive sequence"}
-            date="2nd october"
-            content="Meeting on 7th April Meeting on 7th April Meeting on 7th April Meeting on 7th April"
-            tags="#Meeting"
-            isPinned={true}
-            onEdit={() => {}}
-            onDelete={() => {}}
-            onPinNote={() => {}}
-          />
-          <NoteCard
-            title={"Max Subarray sum"}
-            date="2nd october"
-            content="Meeting on 7th April Meeting on 7th April Meeting on 7th April Meeting on 7th April"
-            tags="#Meeting"
-            isPinned={true}
-            onEdit={() => {}}
-            onDelete={() => {}}
-            onPinNote={() => {}}
-          />
-          <NoteCard
-            title={"4 Sum"}
-            date="2nd october"
-            content="Meeting on 7th April Meeting on 7th April Meeting on 7th April Meeting on 7th April"
-            tags="#Meeting"
-            isPinned={true}
-            onEdit={() => {}}
-            onDelete={() => {}}
-            onPinNote={() => {}}
-          />
-          <NoteCard
-            title={"is bitonic sequence"}
-            date="2nd october"
-            content="Meeting on 7th April Meeting on 7th April Meeting on 7th April Meeting on 7th April"
-            tags="#Meeting"
+            content="Max length after rearranging the array elements"
+            tags="#Revisi t"
             isPinned={true}
             onEdit={() => {}}
             onDelete={() => {}}
