@@ -4,10 +4,10 @@ import { MdCreate, MdDelete } from "react-icons/md";
 
 const NoteCard = ({ title, date, content, tags, isPinned, onEdit, onDelete, onPinNote }) => {
   return (
-    <div className="border rounded p-4 bg-white hover:shadow-xl transition-all ease-in-out">
+    <div className="border rounded p-4 bg-white hover:shadow-xl transition-all ease-in-out cursor-pointer">
       <div className="flex items-center justify-between">
         <div>
-          <h6 className="text-sm font-medium">{title}</h6>
+          <h6 style={{fontSize: "16px"}} className="text-sm font-medium">{title}</h6>
           <span className="text-xs text-slate-500">{date}</span>
         </div>
 
@@ -24,7 +24,7 @@ const NoteCard = ({ title, date, content, tags, isPinned, onEdit, onDelete, onPi
 
         <div className="flex items-center gap-2">
           <MdCreate className="icon-btn hover:text-black" onClick={onEdit} />
-          <MdDelete className="icon-btn hover:text-black" onClick={onDelete} />
+          <MdDelete className="icon-btn hover:text-red-600" onClick={onDelete} />
         </div>
       </div>
     </div>

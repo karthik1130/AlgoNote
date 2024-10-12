@@ -8,7 +8,7 @@ import "./index.css";
 const routes = (
   <Router>
     <Routes>
-      <Route path="/home" element={<Home />} />
+      <Route path="/dashboard" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
     </Routes>
