@@ -111,6 +111,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/add-note", authenticateToken, async (req, res) => {
+  // error
   const { title, content, tags } = req.body;
   const { user } = req.user;
 
