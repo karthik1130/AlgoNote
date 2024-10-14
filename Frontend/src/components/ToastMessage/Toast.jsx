@@ -3,7 +3,9 @@ import { LuCheck } from "react-icons/lu";
 import { MdDeleteOutline } from "react-icons/md";
 
 const Toast = ({ isShown, message, type, onClose }) => {
+  
   useEffect(() => {
+
     const timeOutId = setTimeout(() => {
       onClose();
     }, 2000);
@@ -14,8 +16,8 @@ const Toast = ({ isShown, message, type, onClose }) => {
 
   return (
     <div
-      className={`absolute top-20 right-6 transition-all duration-400 ${
-        isShown ? "opacity-100" : "opacity-0"
+      className={`fixed top-20 right-6 transition-all duration-500 ease-in-out transform ${
+        isShown ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
       }`}
     >
       <div
@@ -35,7 +37,7 @@ const Toast = ({ isShown, message, type, onClose }) => {
               <LuCheck className="text-xl text-green-500" />
             )}
           </div>
-          <p className="text-sm text-slate-800">{}</p>
+          <p className="text-sm text-slate-800">{message}</p>
         </div>
       </div>
     </div>
