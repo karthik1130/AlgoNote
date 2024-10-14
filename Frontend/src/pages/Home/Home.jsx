@@ -7,6 +7,7 @@ import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 import Toast from "../../components/ToastMessage/Toast";
+import EmptyCard from "../../components/EmptyCard/EmptyCard";
 
 const Home = () => {
   const [openAddEditModal, setOpenAddEditModal] = useState({
@@ -27,6 +28,10 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleEdit = (noteDetails) => {
+    setOpenAddEditModal({ isShown: true, data: noteDetails, type: "edit" });
+  };
+
+  const touchOpen = (noteDetails) => {
     setOpenAddEditModal({ isShown: true, data: noteDetails, type: "edit" });
   };
 
@@ -99,25 +104,35 @@ const Home = () => {
     <>
       <Navbar userInfo={userInfo} />
       <div className="container mx-auto">
-        <div className="grid grid-cols-4 gap-4 mt-8 px-4">
-          {allNotes.map((item, idx) => (
-            <NoteCard
-              key={item._id}
-              title={item.title}
-              date={item.createdOn}
-              content={item.content}
-              tags={item.tags}
-              isPinned={item.isPinned}
-              onEdit={() => {
-                handleEdit(item);
-              }}
-              onDelete={() => {
-                deleteNote(item);
-              }}
-              onPinNote={() => {}}
-            />
-          ))}
-        </div>
+        {allNotes.length > 0 ? (
+          <div className="grid grid-cols-4 gap-4 mt-8 px-4">
+            {allNotes.map((item) => (
+              <div
+                key={item._id}
+                onClick={() => touchOpen(item)} // Call touchOpen on click anywhere
+              >
+                <NoteCard
+                  title={item.title}
+                  date={item.createdOn}
+                  content={item.content}
+                  tags={item.tags}
+                  isPinned={item.isPinned}
+                  onEdit={(e) => {
+                    e.stopPropagation(); // Prevent bubbling to avoid triggering `touchOpen`
+                    handleEdit(item);
+                  }}
+                  onDelete={(e) => {
+                    e.stopPropagation(); // Prevent bubbling to avoid triggering `touchOpen`
+                    deleteNote(item);
+                  }}
+                  onPinNote={() => {}}
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <EmptyCard />
+        )}
       </div>
 
       <button
