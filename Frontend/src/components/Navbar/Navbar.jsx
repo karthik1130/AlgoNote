@@ -4,13 +4,14 @@ import Profile from "../Cards/Profile";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 
-const Navbar = () => {
+const Navbar = ({ userInfo }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
   const link = "http://localhost:5173/dashboard";
 
   const onLogout = () => {
+    localStorage.clear();
     navigate("/login");
   };
 
@@ -37,7 +38,7 @@ const Navbar = () => {
       />
 
       <div>
-        <Profile className="ml-auto" onLogout={onLogout} />
+        <Profile className="ml-auto" userInfo={userInfo} onLogout={onLogout} />
       </div>
     </div>
   );

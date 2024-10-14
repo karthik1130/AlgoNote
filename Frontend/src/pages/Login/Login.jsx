@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PasswordInput from "../../components/Input/PasswordInput";
 import { verifyEmail } from "../../utils/helper";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,6 +28,24 @@ const Login = () => {
 
     // Login API pending
 
+    try {
+      const response = await axiosInstance.post("/login", {
+        email: email,
+        password: password,
+      });
+
+      if (response.data && response.data.accessToken) {
+        localStorage.setItem("token", response.data.accessToken);
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      // login error handling
+      if (error.response && error.response.data && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("An unexpected error occured. Please try again.");
+      }
+    }
   };
 
   return (
@@ -34,7 +55,7 @@ const Login = () => {
         <div className="w-96 border rounded bg-white px-7 py-10 drop-shadow">
           <form onSubmit={handleLogin}>
             <h4 className="text-2xl mb-7">Login</h4>
-            
+
             <input
               type="text"
               placeholder="Email"
@@ -46,7 +67,6 @@ const Login = () => {
             <PasswordInput value={password} onChange={(e) => setPassword(e.target.value)} />
 
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
-
 
             <button type="submit" className="button-primary">
               Login
