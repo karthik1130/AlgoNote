@@ -25,6 +25,8 @@ const Home = () => {
   const [allNotes, setAllNotes] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
 
+  const [isSearch, setIsSearch] = useState(false); //
+
   const navigate = useNavigate();
 
   const handleEdit = (noteDetails) => {
@@ -94,6 +96,22 @@ const Home = () => {
     }
   };
 
+  // search a note // error , check at post man 
+  const onSearchNote = async (query) => {
+    try {
+      const response = await axiosInstance.get("/search-notes", {
+        params: { query },
+      });
+
+      if (response.data && response.data.notes) {
+        setIsSearch(true);
+        setAllNotes(response.data.notes);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getAllNotes();
     getUserInfo();
@@ -102,7 +120,7 @@ const Home = () => {
 
   return (
     <>
-      <Navbar userInfo={userInfo} />
+      <Navbar userInfo={userInfo} onSearchNote={onSearchNote} /> // error
       <div className="container mx-auto">
         {allNotes.length > 0 ? (
           <div className="grid grid-cols-4 gap-4 mt-8 px-4">
