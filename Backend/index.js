@@ -130,7 +130,7 @@ app.get("/get-user", authenticateToken, async (req, res) => {
 });
 
 app.post("/add-note", authenticateToken, async (req, res) => {
-  // error
+
   const { title, content, tags } = req.body;
   const { user } = req.user;
 
@@ -204,6 +204,8 @@ app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
 
 app.get("/get-all-notes/", authenticateToken, async (req, res) => {
   const { user } = req.user;
+
+  const BACKEND_URL = "https://";
 
   try {
     const notes = await Note.find({ userId: user._id }).sort({ isPinned: -1 });

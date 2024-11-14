@@ -26,7 +26,6 @@ const Login = () => {
     }
     setError("");
 
-    // Login API pending
 
     try {
       const response = await axiosInstance.post("/login", {
