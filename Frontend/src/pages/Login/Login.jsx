@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, resolvePath, useNavigate } from "react-router-dom";
 import PasswordInput from "../../components/Input/PasswordInput";
 import { verifyEmail } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
@@ -16,16 +16,15 @@ const Login = () => {
     e.preventDefault();
 
     if (!verifyEmail(email)) {
-      setError("Please enter a valid email address.");
+      setError("Please verify your Email");
       return;
     }
 
     if (!password) {
       setError("Please enter a password");
       return;
-    }
+    } 
     setError("");
-
 
     try {
       const response = await axiosInstance.post("/login", {
@@ -37,8 +36,8 @@ const Login = () => {
         localStorage.setItem("token", response.data.accessToken);
         navigate("/dashboard");
       }
+      
     } catch (error) {
-      // login error handling
       if (error.response && error.response.data && error.response.data.message) {
         setError(error.response.data.message);
       } else {
